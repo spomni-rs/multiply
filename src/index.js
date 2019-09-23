@@ -1,8 +1,7 @@
 module.exports = function multiply(first, second) {
 
-  if ( first === '0'
-    || second === '0'
-  ){
+  // 123 * 0 = 0
+  if (first === '0' || second === '0'){
     return '0';
   }
 
@@ -13,13 +12,15 @@ module.exports = function multiply(first, second) {
   let secondArr = second.split('');
   let secondLast = secondArr.pop();
   
+  // 1234 * 120 = 12340 * 12
   if (secondLast === '0'){
     return multiply(
       first + '0',
       secondArr.join('')
     );
 
-  } else { // secondLast !== '0'
+  // 1234 * 123 = 1234 * 3 + 1234 * 120
+  } else { 
   
     secondArr.push('0');
 
@@ -94,13 +95,7 @@ function plus(first, second){
   
   }
   
-  res = res.split('');
-  
-  while (res[0] === '0'){
-    res.shift();
-  }
-  
-  return res.join('');
+  return trimStartZeros(res);
 
 }
 
